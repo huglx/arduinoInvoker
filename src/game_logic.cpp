@@ -64,4 +64,8 @@ void GameLogic::generateRandomSpell() {
 
 GameMode GameLogic::getCurrentMode() {
     return currentMode;
+}
+
+int GameLogic::getCurrentSpellIndex() {
+    return currentSpellIndex;
 } 

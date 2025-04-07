@@ -16,7 +16,7 @@ void Display::clear() {
 void Display::showSpellName(const char* spellName) {
     char line[17];
     snprintf(line, sizeof(line), "Spell: %s", spellName);
-    Esplora.    (line, 0);
+    Esplora.writeDisplay(line, 0);
 }
 
 void Display::showInput(const char* input) {

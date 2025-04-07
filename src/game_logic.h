@@ -42,6 +42,12 @@ public:
     
     // Generate random spell
     void generateRandomSpell();
+    
+    // Get current game mode
+    GameMode getCurrentMode();
+    
+    // Get current spell index
+    int getCurrentSpellIndex();
 };
 
 #endif 
