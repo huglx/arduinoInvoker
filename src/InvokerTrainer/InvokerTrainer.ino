@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <LiquidCrystal.h>
 #include "constants.h"
 #include "game_logic.h"
 #include "display.h"

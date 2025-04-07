@@ -4,6 +4,8 @@
 #include <Arduino.h>
 #include <Esplora.h>
 #include "constants.h"
+#include <SPI.h>
+#include <TFT.h> 
 
 class Display {
 public:
