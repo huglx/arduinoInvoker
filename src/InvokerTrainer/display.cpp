@@ -49,8 +49,7 @@ void Display::showScore(int score) {
         currentScore = score;
         char scoreText[20];
         sprintf(scoreText, "Score: %d", score);
-        EsploraTFT.background(0, 0, 0);
-        EsploraTFT.text(scoreText, 5, 5);
+        EsploraTFT.text(scoreText, 5, 55);
     }
 }
 

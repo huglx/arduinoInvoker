@@ -2,10 +2,10 @@
 #define CONSTANTS_H
 
 // Button mappings for Arduino Esplora
-#define BUTTON_QUAS 1    // Button 1
-#define BUTTON_WEX  2    // Button 2
-#define BUTTON_EXORT 3   // Button 3
-#define BUTTON_INVOKE 4  // Button 4
+#define BUTTON_QUAS 2    // Button 1
+#define BUTTON_WEX  3    // Button 2
+#define BUTTON_EXORT 4   // Button 3
+#define BUTTON_INVOKE 1  // Button 4
 
 // Spell combinations
 #define MAX_SPELLS 10

@@ -42,13 +42,13 @@ void handleMenu() {
     // Check joystick for mode selection
     int x = Esplora.readJoystickX();
     int y = Esplora.readJoystickY();
-    
+    Serial.println(x);
     // Left/Right to change mode
-    if (x < 512 - 100) { // Left
+    if (x < -16 - 100) { // Left
         selectedMode = FREE_TRAINING;
         display.showGameMode(selectedMode);
         delay(200);
-    } else if (x > 512 + 100) { // Right
+    } else if (x > -16 + 100) { // Right
         selectedMode = TIMED_MODE;
         display.showGameMode(selectedMode);
         delay(200);
@@ -150,6 +150,8 @@ int getSpellIndex(const char* input) {
 
 void updateDisplay() {
     display.showScore(game.getScore());
+    display.showSpellName(SPELL_NAMES[game.getCurrentSpellIndex()]);
+
     if (game.getCurrentMode() == TIMED_MODE) {
         display.showTime(game.getRemainingTime());
     }
