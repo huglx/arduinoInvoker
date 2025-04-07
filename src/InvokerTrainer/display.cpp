@@ -100,7 +100,12 @@ void Display::showMenu() {
         isMenuShown = true;
         EsploraTFT.background(0, 0, 0);
         EsploraTFT.text("Invoker Trainer", 5, 5);
-        EsploraTFT.text("Press Joystick", 5, 30);
+        EsploraTFT.text("Select Mode:", 5, 30);
+        if (currentMode == FREE_TRAINING) {
+            EsploraTFT.text("Free Training", 5, 55);
+        } else {
+            EsploraTFT.text("Timed Mode", 5, 55);
+        }
     }
 }
 
