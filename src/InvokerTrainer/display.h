@@ -6,6 +6,9 @@
 #include "constants.h"
 
 class Display {
+private:
+    EsploraTFT screen;
+    
 public:
     Display();
     

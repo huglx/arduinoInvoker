@@ -4,73 +4,79 @@ Display::Display() {
 }
 
 void Display::init() {
-    Esplora.writeRGB(0, 0, 0); // Turn off RGB LED
+    screen.begin();
+    screen.background(0, 0, 0);
+    screen.setTextSize(2);
+    screen.stroke(255, 255, 255);
     clear();
 }
 
 void Display::clear() {
-    Esplora.writeDisplay("                ", 0); // Clear first line
-    Esplora.writeDisplay("                ", 1); // Clear second line
+    screen.background(0, 0, 0);
 }
 
 void Display::showSpellName(const char* spellName) {
-    char line[17];
-    snprintf(line, sizeof(line), "Spell: %s", spellName);
-    Esplora.writeDisplay(line, 0);
+    screen.background(0, 0, 0);
+    screen.text("Spell:", 5, 5);
+    screen.text(spellName, 5, 30);
 }
 
 void Display::showInput(const char* input) {
-    char line[17];
-    snprintf(line, sizeof(line), "Input: %s", input);
-    Esplora.writeDisplay(line, 1);
+    screen.background(0, 0, 0);
+    screen.text("Input:", 5, 5);
+    screen.text(input, 5, 30);
 }
 
 void Display::showScore(int score) {
-    char line[17];
-    snprintf(line, sizeof(line), "Score: %d", score);
-    Esplora.writeDisplay(line, 1);
+    char scoreText[20];
+    sprintf(scoreText, "Score: %d", score);
+    screen.background(0, 0, 0);
+    screen.text(scoreText, 5, 5);
 }
 
 void Display::showTime(unsigned long time) {
-    char line[17];
-    snprintf(line, sizeof(line), "Time: %lu s", time / 1000);
-    Esplora.writeDisplay(line, 1);
+    char timeText[20];
+    sprintf(timeText, "Time: %lu s", time / 1000);
+    screen.background(0, 0, 0);
+    screen.text(timeText, 5, 5);
 }
 
 void Display::showGameMode(GameMode mode) {
-    clear();
-    Esplora.writeDisplay("Select Mode:", 0);
+    screen.background(0, 0, 0);
+    screen.text("Select Mode:", 5, 5);
     if (mode == FREE_TRAINING) {
-        Esplora.writeDisplay("Free Training", 1);
+        screen.text("Free Training", 5, 30);
     } else {
-        Esplora.writeDisplay("Timed Mode", 1);
+        screen.text("Timed Mode", 5, 30);
     }
 }
 
 void Display::showSuccess() {
-    Esplora.writeDisplay("Correct!", 1);
-    Esplora.writeRGB(0, 255, 0); // Green LED
+    screen.background(0, 0, 0);
+    screen.stroke(0, 255, 0);
+    screen.text("Correct!", 5, 5);
     delay(1000);
-    Esplora.writeRGB(0, 0, 0); // Turn off LED
+    screen.stroke(255, 255, 255);
 }
 
 void Display::showError() {
-    Esplora.writeDisplay("Wrong!", 1);
-    Esplora.writeRGB(255, 0, 0); // Red LED
+    screen.background(0, 0, 0);
+    screen.stroke(255, 0, 0);
+    screen.text("Wrong!", 5, 5);
     delay(1000);
-    Esplora.writeRGB(0, 0, 0); // Turn off LED
+    screen.stroke(255, 255, 255);
 }
 
 void Display::showMenu() {
-    clear();
-    Esplora.writeDisplay("Invoker Trainer", 0);
-    Esplora.writeDisplay("Press Joystick", 1);
+    screen.background(0, 0, 0);
+    screen.text("Invoker Trainer", 5, 5);
+    screen.text("Press Joystick", 5, 30);
 }
 
 void Display::showGameOver(int finalScore) {
-    clear();
-    Esplora.writeDisplay("Game Over!", 0);
-    char line[17];
-    snprintf(line, sizeof(line), "Score: %d", finalScore);
-    Esplora.writeDisplay(line, 1);
+    screen.background(0, 0, 0);
+    screen.text("Game Over!", 5, 5);
+    char scoreText[20];
+    sprintf(scoreText, "Score: %d", finalScore);
+    screen.text(scoreText, 5, 30);
 } 
