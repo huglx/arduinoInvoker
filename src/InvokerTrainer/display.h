@@ -8,6 +8,14 @@
 #include <TFT.h> 
 
 class Display {
+private:
+    char currentSpellName[20];
+    char currentInput[20];
+    int currentScore;
+    unsigned long currentTime;
+    GameMode currentMode;
+    bool isMenuShown;
+    
 public:
     Display();
     
