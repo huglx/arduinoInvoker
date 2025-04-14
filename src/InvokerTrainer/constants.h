@@ -11,6 +11,16 @@
 #define MAX_SPELLS 10
 #define SPELL_LENGTH 3
 
+// Display positions and sizes
+#define TITLE_Y 5
+#define SPELL_LABEL_Y 25
+#define SPELL_TEXT_Y 45
+#define INPUT_LABEL_Y 70
+#define INPUT_TEXT_Y 90
+#define SCORE_Y 115
+#define MODE_Y 25
+#define LINE_HEIGHT 20
+
 // Spell names
 extern const char* SPELL_NAMES[MAX_SPELLS];
 
