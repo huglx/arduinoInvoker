@@ -123,28 +123,28 @@ void checkSpell() {
 }
 
 int getSpellIndex(const char* input) {
-    // Convert input to spell index (Q=1, W=2, E=3)
-    int spell[SPELL_LENGTH];
+    // Convert input to counts of each element (Q=1, W=2, E=3)
+    int inputCounts[3] = {0, 0, 0}; // Counts for Q, W, E
+    
+    // Count occurrences of each element in input
     for (int i = 0; i < SPELL_LENGTH; i++) {
         switch (input[i]) {
-            case 'Q': spell[i] = 1; break;
-            case 'W': spell[i] = 2; break;
-            case 'E': spell[i] = 3; break;
+            case 'Q': inputCounts[0]++; break;
+            case 'W': inputCounts[1]++; break;
+            case 'E': inputCounts[2]++; break;
             default: return -1;
         }
     }
     
-    // Find matching spell
+    // Find matching spell by comparing with pre-calculated counts
     for (int i = 0; i < MAX_SPELLS; i++) {
-        bool match = true;
-        for (int j = 0; j < SPELL_LENGTH; j++) {
-            if (spell[j] != SPELL_COMBINATIONS[i][j]) {
-                match = false;
-                break;
-            }
+        if (inputCounts[0] == SPELL_ELEMENT_COUNTS[i][0] && 
+            inputCounts[1] == SPELL_ELEMENT_COUNTS[i][1] && 
+            inputCounts[2] == SPELL_ELEMENT_COUNTS[i][2]) {
+            return i;
         }
-        if (match) return i;
     }
+    
     return -1;
 }
 

@@ -17,6 +17,9 @@ extern const char* SPELL_NAMES[MAX_SPELLS];
 // Spell combinations (Q=1, W=2, E=3)
 extern const int SPELL_COMBINATIONS[MAX_SPELLS][SPELL_LENGTH];
 
+// Pre-calculated element counts for each spell (Q, W, E counts)
+extern const int SPELL_ELEMENT_COUNTS[MAX_SPELLS][3];
+
 // Game modes
 enum GameMode {
     FREE_TRAINING,
