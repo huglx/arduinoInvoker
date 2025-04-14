@@ -65,6 +65,16 @@ void handleMenu() {
 }
 
 void handleGame() {
+
+    // Press joystick button to end game
+    if (Esplora.readJoystickButton() == LOW) {
+        display.showGameOver(game.getScore());
+        sound.playEnd();
+        delay(3000);
+        resetGame();
+        return;
+    }
+
     // Check for button presses
     if (Esplora.readButton(BUTTON_QUAS) == LOW) {
         handleInput('Q');
@@ -78,6 +88,7 @@ void handleGame() {
     if (Esplora.readButton(BUTTON_INVOKE) == LOW) {
         checkSpell();
     }
+
     
     // Check for game over
     if (!game.isActive()) {
