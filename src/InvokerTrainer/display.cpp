@@ -95,15 +95,13 @@ void Display::showError() {
 }
 
 void Display::showMenu() {
-    if (!isMenuShown) {
-        isMenuShown = true;
-        EsploraTFT.text("Invoker Trainer", 5, 5);
-        EsploraTFT.text("Select Mode:", 5, 30);
-        if (currentMode == FREE_TRAINING) {
-            EsploraTFT.text("Free Training", 5, 55);
-        } else {
-            EsploraTFT.text("Timed Mode", 5, 55);
-        }
+    EsploraTFT.background(0, 0, 0);
+    EsploraTFT.text("Invoker Trainer", 5, 5);
+    EsploraTFT.text("Select Mode:", 5, 30);
+    if (currentMode == FREE_TRAINING) {
+        EsploraTFT.text("Free Training", 5, 55);
+    } else {
+        EsploraTFT.text("Timed Mode", 5, 55);
     }
 }
 
