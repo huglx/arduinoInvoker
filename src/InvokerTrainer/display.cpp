@@ -1,5 +1,4 @@
 #include "display.h"
-#include "constants.h"
 
 Display::Display() {
     currentSpellName[0] = '\0';
@@ -7,7 +6,7 @@ Display::Display() {
     currentScore = -1;
     currentTime = 0;
     currentMode = FREE_TRAINING;
-    isMenuShowns = false;
+    isMenuShown = false;
 }
 
 void Display::init() {
@@ -27,34 +26,30 @@ void Display::clear() {
     isMenuShown = false;
 }
 
-void Display::clearArea(int y, int height) {
-    EsploraTFT.fill(0, 0, 0);
-    EsploraTFT.rect(0, y, EsploraTFT.width(), height);
-}
-
 void Display::showSpellName(const char* spellName) {
-    clearArea(SPELL_TEXT_Y, LINE_HEIGHT);
     if (strcmp(currentSpellName, spellName) != 0) {
         strcpy(currentSpellName, spellName);
-        EsploraTFT.text(currentSpellName, 0, SPELL_TEXT_Y);
+        EsploraTFT.background(0, 0, 0);
+        EsploraTFT.text("Spell:", 5, 5);
+        EsploraTFT.text(currentSpellName, 5, 30);
     }
 }
 
 void Display::showInput(const char* input) {
-    clearArea(INPUT_TEXT_Y, LINE_HEIGHT);
     if (strcmp(currentInput, input) != 0) {
         strcpy(currentInput, input);
-        EsploraTFT.text(currentInput, 0, INPUT_TEXT_Y);
+        EsploraTFT.background(0, 0, 0);
+        EsploraTFT.text("Input:", 5, 5);
+        EsploraTFT.text(currentInput, 5, 30);
     }
 }
 
 void Display::showScore(int score) {
-    clearArea(SCORE_Y, LINE_HEIGHT);
     if (currentScore != score) {
         currentScore = score;
         char scoreText[20];
         sprintf(scoreText, "Score: %d", score);
-        EsploraTFT.text(scoreText, 0, SCORE_Y);
+        EsploraTFT.text(scoreText, 5, 55);
     }
 }
 
@@ -63,53 +58,57 @@ void Display::showTime(unsigned long time) {
         currentTime = time;
         char timeText[20];
         sprintf(timeText, "Time: %lu s", time / 1000);
-        clearArea(TIME_Y, LINE_HEIGHT);
-        EsploraTFT.text(timeText, 0, TIME_Y);
+        EsploraTFT.fillRect(6, 100, EsploraTFT.width(), 16, 0);
+        EsploraTFT.text(timeText, 5, 100);
     }
 }
 
 void Display::showGameMode(GameMode mode) {
-    clearArea(MODE_Y, LINE_HEIGHT);
     if (currentMode != mode) {
         currentMode = mode;
-        const char* modeText = (mode == FREE_TRAINING) ? "Free Training" : "Timed Mode";
-        EsploraTFT.text(modeText, 0, MODE_Y);
-    }
-}
-
-void Display::showSuccess() {
-    clearArea(SCORE_Y, LINE_HEIGHT);
-    EsploraTFT.stroke(0, 255, 0);
-    EsploraTFT.text("Correct!", 0, SCORE_Y);
-    delay(1000);
-    EsploraTFT.stroke(255, 255, 255);
-}
-
-void Display::showError() {
-    clearArea(SCORE_Y, LINE_HEIGHT);
-    EsploraTFT.stroke(255, 0, 0);
-    EsploraTFT.text("Wrong!", 0, SCORE_Y);
-    delay(1000);
-    EsploraTFT.stroke(255, 255, 255);
-}
-
-void Display::showMenu() {
-    if (!isMenuShown) {
-        isMenuShown = true;
-        EsploraTFT.text("Invoker Trainer", 0, TITLE_Y);
-        EsploraTFT.text("Select Mode:", 0, MODE_Y);
-        if (currentMode == FREE_TRAINING) {
-            EsploraTFT.text("Free Training", 0, MODE_Y + LINE_HEIGHT);
+        EsploraTFT.fillRect(0, 55, EsploraTFT.width(), 16, 0);
+        EsploraTFT.text("Select Mode:", 5, 30);
+        if (mode == FREE_TRAINING) {
+            EsploraTFT.text("Free Training", 5, 55);
         } else {
-            EsploraTFT.text("Timed Mode", 0, MODE_Y + LINE_HEIGHT);
+            EsploraTFT.text("Timed Mode", 5, 55);
         }
     }
 }
 
-void Display::showGameOver(int finalScore) {
+void Display::showSuccess() {
+    EsploraTFT.background(0, 0, 0);
+    EsploraTFT.stroke(0, 255, 0);
+    EsploraTFT.text("Correct!", 5, 5);
+    delay(1000);
+    EsploraTFT.stroke(255, 255, 255);
     clear();
-    EsploraTFT.text("Game Over!", 0, TITLE_Y);
+}
+
+void Display::showError() {
+    EsploraTFT.background(0, 0, 0);
+    EsploraTFT.stroke(255, 0, 0);
+    EsploraTFT.text("Wrong!", 5, 5);
+    delay(1000);
+    EsploraTFT.stroke(255, 255, 255);
+    clear();
+}
+
+void Display::showMenu() {
+    EsploraTFT.background(0, 0, 0);
+    EsploraTFT.text("Invoker Trainer", 5, 5);
+    EsploraTFT.text("Select Mode:", 5, 30);
+    if (currentMode == FREE_TRAINING) {
+        EsploraTFT.text("Free Training", 5, 55);
+    } else {
+        EsploraTFT.text("Timed Mode", 5, 55);
+    }
+}
+
+void Display::showGameOver(int finalScore) {
+    EsploraTFT.background(0, 0, 0);
+    EsploraTFT.text("Game Over!", 5, 5);
     char scoreText[20];
-    sprintf(scoreText, "Final Score: %d", finalScore);
-    EsploraTFT.text(scoreText, 0, SCORE_Y);
+    sprintf(scoreText, "Score: %d", finalScore);
+    EsploraTFT.text(scoreText, 5, 30);
 } 

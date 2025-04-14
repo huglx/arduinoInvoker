@@ -58,7 +58,6 @@ void handleMenu() {
     if (Esplora.readJoystickButton() == LOW) {
         inMenu = false;
         game.initGame(selectedMode);
-        display.showSpellName(SPELL_NAMES[game.getCurrentSpellIndex()]);
         sound.playStart();
         delay(500);
     }
@@ -96,6 +95,7 @@ void handleGame() {
         sound.playEnd();
         delay(3000);
         resetGame();
+        return;
     }
     
     // Update game state
@@ -126,6 +126,7 @@ void checkSpell() {
         } else {
             sound.playWrong();
             display.showError();
+            
         }
         // Reset input buffer
         inputIndex = 0;
@@ -160,9 +161,8 @@ int getSpellIndex(const char* input) {
 }
 
 void updateDisplay() {
-    display.showScore(game.getScore());
     display.showSpellName(SPELL_NAMES[game.getCurrentSpellIndex()]);
-
+    display.showScore(game.getScore());
     if (game.getCurrentMode() == TIMED_MODE) {
         display.showTime(game.getRemainingTime());
     }
@@ -173,5 +173,6 @@ void resetGame() {
     inputIndex = 0;
     memset(inputBuffer, 0, sizeof(inputBuffer));
     inMenu = true;
+    display.clear();
     display.showMenu();
 } 

@@ -51,6 +51,10 @@ public:
     
     // Display game over
     void showGameOver(int finalScore);
+
+    void clearArea(int y, int height);
+
+    void clearAllArea();
 };
 
 #endif 

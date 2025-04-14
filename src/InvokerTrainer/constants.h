@@ -20,6 +20,8 @@
 #define SCORE_Y 115
 #define MODE_Y 25
 #define LINE_HEIGHT 20
+#define TIME_Y 125
+#define SELECTED_MODE_Y 45
 
 // Spell names
 extern const char* SPELL_NAMES[MAX_SPELLS];
