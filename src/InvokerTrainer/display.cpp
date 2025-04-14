@@ -66,12 +66,12 @@ void Display::showTime(unsigned long time) {
 void Display::showGameMode(GameMode mode) {
     if (currentMode != mode) {
         currentMode = mode;
-        EsploraTFT.background(0, 0, 0);
-        EsploraTFT.text("Select Mode:", 5, 5);
+        EsploraTFT.fillRect(0, 55, EsploraTFT.width(), 16, 0);
+        EsploraTFT.text("Select Mode:", 5, 30);
         if (mode == FREE_TRAINING) {
-            EsploraTFT.text("Free Training", 5, 30);
+            EsploraTFT.text("Free Training", 5, 55);
         } else {
-            EsploraTFT.text("Timed Mode", 5, 30);
+            EsploraTFT.text("Timed Mode", 5, 55);
         }
     }
 }
@@ -97,7 +97,6 @@ void Display::showError() {
 void Display::showMenu() {
     if (!isMenuShown) {
         isMenuShown = true;
-        EsploraTFT.background(0, 0, 0);
         EsploraTFT.text("Invoker Trainer", 5, 5);
         EsploraTFT.text("Select Mode:", 5, 30);
         if (currentMode == FREE_TRAINING) {
