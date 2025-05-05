@@ -15,6 +15,7 @@ private:
     unsigned long currentTime;
     GameMode currentMode;
     bool isMenuShown;
+    unsigned long lastDisplayedSeconds = 0;
     
 public:
     Display();
@@ -41,7 +42,7 @@ public:
     void showGameMode(GameMode mode);
     
     // Display success message
-    void showSuccess();
+    void showSuccess(unsigned long spellCastTime);
     
     // Display error message
     void showError();
@@ -55,6 +56,8 @@ public:
     void clearArea(int y, int height);
 
     void clearAllArea();
+
+    void showBestScore(unsigned long avg, int bestScore);
 };
 
 #endif 

@@ -48,4 +48,8 @@ enum GameMode {
 #define WRONG_TONE 500
 #define TONE_DURATION 200
 
+// Best scores 
+#define AVG_ADDR 0
+#define TIMED_BEST_SCORE_ADDR 10
+
 #endif 

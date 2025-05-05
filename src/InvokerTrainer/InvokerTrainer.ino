@@ -53,13 +53,14 @@ void handleMenu() {
         display.showGameMode(selectedMode);
         delay(200);
     }
+
+    display.showBestScore(game.getAvgFromEEPROM(), game.getBestScoreFromEEPROM());
     
     // Press joystick button to start game
     if (Esplora.readJoystickButton() == LOW) {
         inMenu = false;
         game.initGame(selectedMode);
         sound.playStart();
-        delay(500);
     }
 }
 
@@ -103,9 +104,6 @@ void handleGame() {
     
     // Show current state on display
     updateDisplay();
-    
-    // Small delay to prevent button bounce
-    delay(50);
 }
 
 void handleInput(char input) {
@@ -120,7 +118,7 @@ void checkSpell() {
         bool correct = game.checkSpell(getSpellIndex(inputBuffer));
         if (correct) {
             sound.playCorrect();
-            display.showSuccess();
+            display.showSuccess(game.getCurrentSpellTime());
             game.generateRandomSpell();
             display.showSpellName(SPELL_NAMES[game.getCurrentSpellIndex()]);
         } else {

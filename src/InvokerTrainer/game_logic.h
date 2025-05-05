@@ -12,6 +12,8 @@ private:
     unsigned long startTime;
     int score;
     bool isGameActive;
+    unsigned long lastSpellTime;
+    unsigned long totalSpellTime;
 
 public:
     GameLogic();
@@ -48,6 +50,21 @@ public:
     
     // Get current spell index
     int getCurrentSpellIndex();
+
+    unsigned long getAvgSpellTime();
+
+    unsigned long getCurrentSpellTime();
+
+    void saveAvgToEEPROM();
+ 
+    void saveBestScoreToEEPROM();
+
+    unsigned long getAvgFromEEPROM();
+
+    int getBestScoreFromEEPROM();
+    
+    long EEPROMReadlong(long address);
+    void EEPROMWritelong(int address, long value);
 };
 
 #endif 

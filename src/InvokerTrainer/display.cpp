@@ -12,7 +12,7 @@ Display::Display() {
 void Display::init() {
     EsploraTFT.begin();
     EsploraTFT.background(0, 0, 0);
-    EsploraTFT.setTextSize(2);
+    EsploraTFT.setTextSize(0.5);
     EsploraTFT.stroke(255, 255, 255);
     clear();
 }
@@ -54,10 +54,12 @@ void Display::showScore(int score) {
 }
 
 void Display::showTime(unsigned long time) {
-    if (currentTime != time) {
+    unsigned long secs = time / 1000;
+    if (currentTime != time && lastDisplayedSeconds != secs) {
         currentTime = time;
+        lastDisplayedSeconds = secs;
         char timeText[20];
-        sprintf(timeText, "Time: %lu s", time / 1000);
+        sprintf(timeText, "Time: %lu s", secs);
         EsploraTFT.fillRect(6, 100, EsploraTFT.width(), 16, 0);
         EsploraTFT.text(timeText, 5, 100);
     }
@@ -76,10 +78,13 @@ void Display::showGameMode(GameMode mode) {
     }
 }
 
-void Display::showSuccess() {
+void Display::showSuccess(unsigned long spellCastTime) {
     EsploraTFT.background(0, 0, 0);
     EsploraTFT.stroke(0, 255, 0);
+    char text[40];
+    sprintf(text, "Your spell time cast is: \n %lu.%02lu sec", spellCastTime / 1000, (spellCastTime % 1000) / 100);
     EsploraTFT.text("Correct!", 5, 5);
+    EsploraTFT.text(text, 5, 20);
     delay(1000);
     EsploraTFT.stroke(255, 255, 255);
     clear();
@@ -112,3 +117,16 @@ void Display::showGameOver(int finalScore) {
     sprintf(scoreText, "Score: %d", finalScore);
     EsploraTFT.text(scoreText, 5, 30);
 } 
+
+void Display::showBestScore(unsigned long avg, int bestScore) {
+    unsigned long sec = avg / 1000;
+    unsigned long tenths = (avg % 1000) / 100;
+    char avgText[35];
+    sprintf(avgText, "Fastest training avg: %lu.%02lu sec", sec, tenths);
+
+    char scoreText[35];
+    sprintf(scoreText, "Timed mode best: %d", bestScore);
+    EsploraTFT.text(avgText, 5, 85);
+    EsploraTFT.text(scoreText, 5, 95);
+
+}
