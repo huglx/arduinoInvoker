@@ -32,7 +32,7 @@ void Sound::playEnd() {
 }
 
 void Sound::playTone(int frequency, int duration) {
-    // Esplora.tone(frequency, duration);
-    // delay(duration);
-    // Esplora.noTone();
+    Esplora.tone(frequency, duration);
+    delay(duration);
+    Esplora.noTone();
 } 

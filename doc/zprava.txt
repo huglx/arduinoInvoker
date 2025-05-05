@@ -1,0 +1,13 @@
+
+Zpráva k semestrální práci: Invoker Trainer pro Arduino Esplora
+
+Tato semestrální práce se zaměřila na návrh a implementaci tréninkového zařízení pro hráče hry Dota 2, konkrétně pro postavu Invoker. Zařízení je postaveno na desce Arduino Esplora a využívá její vestavěné prvky — displej, tlačítka, joystick, a bzučák. Hra má dva režimy: volný trénink bez časového omezení a režim na čas, kde hráč získává skóre podle počtu správně vyvolaných kouzel během 60 sekund.
+
+Co se povedlo:
+Podařilo se úspěšně implementovat základní herní logiku, včetně generování náhodných kombinací kouzel, vyhodnocování vstupů hráče a okamžité vizuální i zvukové zpětné vazby. Uživatelské rozhraní je intuitivní — pomocí joysticku se vybírá herní režim, tlačítka slouží k zadávání kombinací a vše je zobrazováno na displeji s barevnou signalizací. Hráč také vidí své výsledky po skončení hry a v hlavním menu se zobrazují nejlepší dosažené výkony.
+
+Jaké se objevily problémy a jak byly řešeny:
+Během vývoje se objevily problémy s aktualizací času v režimu na čas. Původně jsem čas na displeji aktualizoval pokaždé, když přišel nový údaj o čase, což způsobovalo časté překreslování a blikání obrazovky. Tento problém jsem vyřešil tak, že čas se aktualizuje pouze tehdy, pokud od posledního zobrazení uplynula celá jedna sekunda. Tím se zobrazování stabilizovalo a hra je přehlednější.
+
+Výsledek:
+Projekt je plně funkční a splnil hlavní cíle — umožňuje trénink kouzel postavy Invoker v přehledném a interaktivním prostředí. Díky zpětné vazbě a měření výkonu může hráč sledovat svůj pokrok a zlepšovat se. Projekt je připraven k dalšímu rozšiřování, například o nové herní režimy nebo připojení k PC pro uložení výsledků.
